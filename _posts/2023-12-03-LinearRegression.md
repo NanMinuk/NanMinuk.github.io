@@ -4,6 +4,12 @@ tags: Machine_Learnig
 typora-root-url: ../
 ---
 
+# 데이터 전처리
+
+사용 데이터셋: [House Rent Prediction Dataset (kaggle.com)](https://www.kaggle.com/datasets/iamsouravbanerjee/house-rent-prediction-dataset)
+
+
+
 ```python
 import numpy as np
 import pandas as pd
@@ -40,7 +46,7 @@ rent_df.head()
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -182,7 +188,7 @@ rent_df.info()
      11  Point of Contact   4746 non-null   object 
     dtypes: float64(2), int64(2), object(8)
     memory usage: 445.1+ KB
-    
+
 
 
 ```python
@@ -202,7 +208,7 @@ rent_df.describe()
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -322,7 +328,7 @@ round(rent_df.describe(),2)
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -398,6 +404,8 @@ round(rent_df.describe(),2)
 </table>
 </div>
 
+## 데이터 시각화
+
 
 
 
@@ -413,7 +421,7 @@ sns.displot(rent_df['BHK'])
 
 
 
-![png](output_10_1.png)
+![output_10_1](/images/2023-12-03-LinearRegression/output_10_1.png)
 
 
 
@@ -429,7 +437,7 @@ sns.displot(rent_df['Rent'])
 
 
 
-![png](output_11_1.png)
+![output_11_1](/images/2023-12-03-LinearRegression/output_11_1.png)
 
 
 
@@ -468,7 +476,7 @@ sns.displot(rent_df['Rent'])
 
 
 
-![png](output_13_1.png)
+![output_13_1](/images/2023-12-03-LinearRegression/output_13_1.png)
 
 
 
@@ -507,7 +515,7 @@ sns.displot(rent_df.drop(1837)['Rent'])
 
 
 
-![png](output_15_1.png)
+![output_15_1](/images/2023-12-03-LinearRegression/output_15_1.png)
 
 
 
@@ -523,7 +531,7 @@ sns.displot(rent_df['Size'])
 
 
 
-![png](output_16_1.png)
+![output_16_1](/images/2023-12-03-LinearRegression/output_16_1.png)
 
 
 
@@ -539,7 +547,7 @@ sns.boxplot(y=rent_df['Size'])
 
 
 
-![png](output_17_1.png)
+![output_17_1](/images/2023-12-03-LinearRegression/output_17_1.png)
 
 
 
@@ -555,7 +563,7 @@ sns.boxplot(y=rent_df['BHK'])
 
 
 
-![png](output_18_1.png)
+![output_18_1](/images/2023-12-03-LinearRegression/output_18_1.png)
 
 
 
@@ -571,7 +579,9 @@ sns.boxplot(y=rent_df['Rent'])
 
 
 
-![png](output_19_1.png)
+![output_19_1](/images/2023-12-03-LinearRegression/output_19_1.png)
+
+## null값 제거
 
 
 
@@ -591,7 +601,7 @@ rent_df.isna()
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -829,7 +839,7 @@ rent_df.dropna(subset=['Size']) # 행 단위로 지움
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -1033,7 +1043,7 @@ rent_df.dropna(1) # na가 있는 열을 모두삭제
 
     C:\Users\MINUK\AppData\Local\Temp\ipykernel_11324\622210487.py:2: FutureWarning: In a future version of pandas all arguments of DataFrame.dropna will be keyword-only.
       rent_df.dropna(1) # na가 있는 열을 모두삭제
-    
+
 
 
 
@@ -1047,7 +1057,7 @@ rent_df.dropna(1) # na가 있는 열을 모두삭제
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -1236,7 +1246,7 @@ rent_df.drop('BHK',axis =1)
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -1437,7 +1447,7 @@ rent_df[rent_df['Size'].isna()]
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -1588,7 +1598,7 @@ rent_df.iloc[na_index]
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -1701,7 +1711,7 @@ rent_df.fillna(rent_df.median()).loc[na_index]
 
     C:\Users\MINUK\AppData\Local\Temp\ipykernel_11324\3610673898.py:2: FutureWarning: Dropping of nuisance columns in DataFrame reductions (with 'numeric_only=None') is deprecated; in a future version this will raise TypeError.  Select only valid columns before calling the reduction.
       rent_df.fillna(rent_df.median()).loc[na_index]
-    
+
 
 
 
@@ -1715,7 +1725,7 @@ rent_df.fillna(rent_df.median()).loc[na_index]
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -1862,7 +1872,7 @@ rent_df = rent_df.fillna(rent_df.median())
 
     C:\Users\MINUK\AppData\Local\Temp\ipykernel_11324\990425930.py:1: FutureWarning: Dropping of nuisance columns in DataFrame reductions (with 'numeric_only=None') is deprecated; in a future version this will raise TypeError.  Select only valid columns before calling the reduction.
       rent_df = rent_df.fillna(rent_df.median())
-    
+
 
 
 ```python
@@ -1905,7 +1915,7 @@ rent_df.head()
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -2010,6 +2020,10 @@ rent_df.head()
 
 
 
+## 텍스트 숫자로 encoding
+
+
+
 
 ```python
 #Area Type은 텍스트 형태이기 때문에 모델에서 계산이 안됨
@@ -2062,7 +2076,7 @@ for i in ['Area Type', 'Area Locality','City','Furnishing Status','Tenant Prefer
     Furnishing Status 3
     Tenant Preferred 3
     Point of Contact 3
-    
+
 
 
 ```python
@@ -2086,7 +2100,7 @@ rent_df.head()
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -2191,7 +2205,7 @@ pd.get_dummies(rent_df,columns=['Area Type','City','Furnishing Status','Tenant P
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -2447,6 +2461,10 @@ pd.get_dummies(rent_df,columns=['Area Type','City','Furnishing Status','Tenant P
 
 
 
+## One-Hot Encoding
+
+
+
 
 ```python
 rent_df=pd.get_dummies(rent_df,columns=['Area Type','City','Furnishing Status','Tenant Preferred','Point of Contact'])
@@ -2469,7 +2487,7 @@ rent_df.head()
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -2652,7 +2670,7 @@ X
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -3013,7 +3031,7 @@ y_train.shape, y_test.shape
 
 
 
-# 1. 선형 회귀(Linear Regression)
+# 선형 회귀(Linear Regression)
 * 독립변수(x)로 종속변수 (y)를 예측하는것
 
 
@@ -3044,9 +3062,9 @@ lr.fit(X_train,y_train)
 pred = lr.predict(X_test)
 ```
 
-# 2. 평가 지표 만들기
+#  평가 지표 만들기
 
-## 2-1.MSE(Mean Squared Error)
+## MSE(Mean Squared Error)
 * 예측값과 실제값의 차이에 대한 제곱에 대하여 평균을 낸 값
 * ${(\frac{1}{n})\sum_{i=1}^{n}(y_{i} - x_{i})^{2}}$
 
@@ -3075,7 +3093,7 @@ my_mse(p,act)
 
 
 
-## 2-2. MAE(Mean Absolute Error)
+## MAE(Mean Absolute Error)
 * 예측값과 실제값의 차이에 대한 제곱에 대하여 평균을 낸 값
 * $(\frac{1}{n})\sum_{i=1}^{n}\left | y_{i} - x_{i} \right |$
 
@@ -3097,7 +3115,7 @@ my_mae(p,act)
 
 
 
-## 2-3. RMSE(Root Mean Squared Error)
+## RMSE(Root Mean Squared Error)
 * 예측값과 실제값의 차이에 대한 제곱에 대하여 평균을 낸 후 루트를 씌운 값
 * $\sqrt{(\frac{1}{n})\sum_{i=1}^{n}(y_{i} - x_{i})^{2}}$
 
@@ -3161,7 +3179,7 @@ mean_squared_error(p,act,squared=False) #rmse
 
 
 
-# 3. 평가지표 적용
+# 평가지표 적용
 
 
 ```python
