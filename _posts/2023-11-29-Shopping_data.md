@@ -1053,5 +1053,5 @@ plot_bar(rev_by_month,'Month','Revenue','Revenue by Month')
 ```
 
 
- ![output_35_0](../images/2023-11-29-Shopping_data/output_35_0.png)
+ ![output_35_0](/images/2023-11-29-Shopping_data/output_35_0.png)
 
