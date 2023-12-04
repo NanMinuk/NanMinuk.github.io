@@ -1,8 +1,14 @@
 ---
 title: DecisionTree
-tags: Machine_Learnig
+tags: Machine_Learning
 typora-root-url: ../
 ---
+
+# 데이터로드
+
+사용 데이터셋: [Bike Sharing Demand | Kaggle](https://www.kaggle.com/c/bike-sharing-demand/data)
+
+
 
 ```python
 import numpy as np
@@ -35,7 +41,7 @@ bike_df.head()
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -250,7 +256,7 @@ bike_df.info()
      15  weather_main  33379 non-null  object 
     dtypes: float64(7), int64(7), object(2)
     memory usage: 4.1+ MB
-    
+
 
 
 ```python
@@ -269,7 +275,7 @@ bike_df.describe()
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -437,20 +443,22 @@ bike_df.describe()
 
 
 
+# 데이터 시각화
+
 
 ```python
-sns.displot(bike_df['count'])
+sns.distplot(bike_df['count'])
 ```
 
 
 
 
-    <seaborn.axisgrid.FacetGrid at 0x22b93614b20>
+    <matplotlib.axes._subplots.AxesSubplot at 0x194ff25b308>
 
 
 
 
-![png](output_8_1.png)
+![output_11_1](/images/2023-12-03-DecisionTree/output_11_1-1701699986012-1.png)
 
 
 
@@ -461,12 +469,12 @@ sns.boxplot(y=bike_df['count'])
 
 
 
-    <AxesSubplot:ylabel='count'>
+    <matplotlib.axes._subplots.AxesSubplot at 0x19481d5f6c8>
 
 
 
 
-![png](output_9_1.png)
+![output_12_1](/images/2023-12-03-DecisionTree/output_12_1-1701699990807-3.png)
 
 
 
@@ -477,12 +485,12 @@ sns.scatterplot(x='feels_like', y='count', data=bike_df, alpha=0.2)
 
 
 
-    <AxesSubplot:xlabel='feels_like', ylabel='count'>
+    <matplotlib.axes._subplots.AxesSubplot at 0x194fb4dcf88>
 
 
 
 
-![png](output_10_1.png)
+![output_13_1](/images/2023-12-03-DecisionTree/output_13_1-1701699994793-5.png)
 
 
 
@@ -493,12 +501,12 @@ sns.scatterplot(x='pressure', y='count', data=bike_df, alpha=0.2)
 
 
 
-    <AxesSubplot:xlabel='pressure', ylabel='count'>
+    <matplotlib.axes._subplots.AxesSubplot at 0x194fd0e4348>
 
 
 
 
-![png](output_11_1.png)
+![output_14_1](/images/2023-12-03-DecisionTree/output_14_1-1701699998411-7.png)
 
 
 
@@ -509,12 +517,12 @@ sns.scatterplot(x='wind_speed', y='count', data=bike_df, alpha=0.2)
 
 
 
-    <AxesSubplot:xlabel='wind_speed', ylabel='count'>
+    <matplotlib.axes._subplots.AxesSubplot at 0x194fd182b88>
 
 
 
 
-![png](output_12_1.png)
+![output_15_1](/images/2023-12-03-DecisionTree/output_15_1.png)
 
 
 
@@ -525,12 +533,9 @@ sns.scatterplot(x='wind_deg', y='count', data=bike_df, alpha=0.2)
 
 
 
-    <AxesSubplot:xlabel='wind_deg', ylabel='count'>
+    <matplotlib.axes._subplots.AxesSubplot at 0x194fd1a9c48>
 
-
-
-
-![png](output_13_1.png)
+![output_16_1](/images/2023-12-03-DecisionTree/output_16_1.png)
 
 
 
@@ -542,13 +547,15 @@ sns.boxplot(x='weather_main', y='count', data=bike_df,palette='Set3')
 
 
 
-    <AxesSubplot:xlabel='weather_main', ylabel='count'>
+    <matplotlib.axes._subplots.AxesSubplot at 0x194fd1dcf08>
 
 
 
 
-![png](output_14_1.png)
+!![output_17_1](/images/2023-12-03-DecisionTree/output_17_1.png)
 
+
+# Null값 처리
 
 
 ```python
@@ -630,7 +637,7 @@ bike_df.head()
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -815,7 +822,7 @@ bike_df.info()
      15  weather_main  33379 non-null  object 
     dtypes: float64(7), int64(7), object(2)
     memory usage: 4.1+ MB
-    
+
 
 
 ```python
@@ -850,7 +857,7 @@ bike_df.info()
      15  weather_main  33379 non-null  object        
     dtypes: datetime64[ns](1), float64(7), int64(7), object(1)
     memory usage: 4.1+ MB
-    
+
 
 
 ```python
@@ -869,7 +876,7 @@ bike_df.head()
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -1030,7 +1037,7 @@ bike_df.head()
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -1214,122 +1221,60 @@ plt.show()
 ```
 
 
-    ---------------------------------------------------------------------------
-
-    KeyboardInterrupt                         Traceback (most recent call last)
-
-    ~\AppData\Local\Temp\ipykernel_3060\1504819505.py in <module>
-          1 plt.figure(figsize=(15, 5))
-    ----> 2 sns.lineplot(x='date', y='count', data=bike_df)
-          3 plt.xticks(rotation=45)
-          4 plt.show()
-    
-
-    ~\anaconda3\lib\site-packages\seaborn\_decorators.py in inner_f(*args, **kwargs)
-         44             )
-         45         kwargs.update({k: arg for k, arg in zip(sig.parameters, args)})
-    ---> 46         return f(**kwargs)
-         47     return inner_f
-         48 
-    
-
-    ~\anaconda3\lib\site-packages\seaborn\relational.py in lineplot(x, y, hue, size, style, data, palette, hue_order, hue_norm, sizes, size_order, size_norm, dashes, markers, style_order, units, estimator, ci, n_boot, seed, sort, err_style, err_kws, legend, ax, **kwargs)
-        708     p._attach(ax)
-        709 
-    --> 710     p.plot(ax, kwargs)
-        711     return ax
-        712 
-    
-
-    ~\anaconda3\lib\site-packages\seaborn\relational.py in plot(self, ax, kws)
-        497                     err = "estimator must be None when specifying units"
-        498                     raise ValueError(err)
-    --> 499                 x, y, y_ci = self.aggregate(y, x, u)
-        500             else:
-        501                 y_ci = None
-    
-
-    ~\anaconda3\lib\site-packages\seaborn\relational.py in aggregate(self, vals, grouper, units)
-        412                                columns=["low", "high"]).stack()
-        413         else:
-    --> 414             cis = grouped.apply(bootstrapped_cis)
-        415 
-        416         # Unpack the CIs into "wide" format for plotting
-    
-
-    ~\anaconda3\lib\site-packages\pandas\core\groupby\generic.py in apply(self, func, *args, **kwargs)
-        242     )
-        243     def apply(self, func, *args, **kwargs):
-    --> 244         return super().apply(func, *args, **kwargs)
-        245 
-        246     @doc(_agg_template, examples=_agg_examples_doc, klass="Series")
-    
-
-    ~\anaconda3\lib\site-packages\pandas\core\groupby\groupby.py in apply(self, func, *args, **kwargs)
-       1421         with option_context("mode.chained_assignment", None):
-       1422             try:
-    -> 1423                 result = self._python_apply_general(f, self._selected_obj)
-       1424             except TypeError:
-       1425                 # gh-20949
-    
-
-    ~\anaconda3\lib\site-packages\pandas\core\groupby\groupby.py in _python_apply_general(self, f, data, not_indexed_same)
-       1462             data after applying f
-       1463         """
-    -> 1464         values, mutated = self.grouper.apply(f, data, self.axis)
-       1465 
-       1466         if not_indexed_same is None:
-    
-
-    ~\anaconda3\lib\site-packages\pandas\core\groupby\ops.py in apply(self, f, data, axis)
-        759             # group might be modified
-        760             group_axes = group.axes
-    --> 761             res = f(group)
-        762             if not mutated and not _is_indexed_like(res, group_axes, axis):
-        763                 mutated = True
-    
-
-    ~\anaconda3\lib\site-packages\seaborn\relational.py in bootstrapped_cis(vals)
-        393                 return null_ci
-        394 
-    --> 395             boots = bootstrap(vals, func=func, n_boot=n_boot, seed=seed)
-        396             cis = ci_func(boots, ci)
-        397             return pd.Series(cis, ["low", "high"])
-    
-
-    ~\anaconda3\lib\site-packages\seaborn\algorithms.py in bootstrap(*args, **kwargs)
-         82     for i in range(int(n_boot)):
-         83         resampler = integers(0, n, n, dtype=np.intp)  # intp is indexing dtype
-    ---> 84         sample = [a.take(resampler, axis=0) for a in args]
-         85         boot_dist.append(f(*sample, **func_kwargs))
-         86     return np.array(boot_dist)
-    
-
-    ~\anaconda3\lib\site-packages\seaborn\algorithms.py in <listcomp>(.0)
-         82     for i in range(int(n_boot)):
-         83         resampler = integers(0, n, n, dtype=np.intp)  # intp is indexing dtype
-    ---> 84         sample = [a.take(resampler, axis=0) for a in args]
-         85         boot_dist.append(f(*sample, **func_kwargs))
-         86     return np.array(boot_dist)
-    
-
-    KeyboardInterrupt: 
 
 
-
-![png](output_30_1.png)
-
-
+![output_34_0](/images/2023-12-03-DecisionTree/output_34_0.png)
 
 ```python
 bike_df[bike_df['year'] == 2019].groupby('month').mean()['count']
 ```
 
 
+
+
+    month
+    1     193.368862
+    2     221.857718
+    3     326.564456
+    4     482.931694
+    5     438.027848
+    6     478.480053
+    7     472.745785
+    8     481.267366
+    9     500.862069
+    10    446.279070
+    11    307.295393
+    12    213.148886
+    Name: count, dtype: float64
+
+
+
+
 ```python
 # 4월 데이터가 없음
 bike_df[bike_df['year'] == 2020].groupby('month').mean()['count']
 ```
+
+
+
+
+    month
+    1     260.445997
+    2     255.894320
+    3     217.135241
+    5     196.581064
+    6     290.900937
+    7     299.811688
+    8     331.528809
+    9     338.876478
+    10    293.640777
+    11    240.507324
+    12    138.993540
+    Name: count, dtype: float64
+
+
+
+# 코로나 이전 이후 분리
 
 
 ```python
@@ -1373,9 +1318,34 @@ covid(bike_df['date'])
 ```
 
 
+
+
+    'precovid'
+
+
+
+
 ```python
 bike_df['date'].apply(covid)
 ```
+
+
+
+
+    0         precovid
+    1         precovid
+    2         precovid
+    3         precovid
+    4         precovid
+               ...    
+    33374    postcovid
+    33375    postcovid
+    33376    postcovid
+    33377    postcovid
+    33378    postcovid
+    Name: date, Length: 33379, dtype: object
+
+
 
 
 ```python
@@ -1398,6 +1368,94 @@ bike_df[['month', 'season']]
 ```
 
 
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+    
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>month</th>
+      <th>season</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>winter</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>winter</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>winter</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>winter</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1</td>
+      <td>winter</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>33374</th>
+      <td>8</td>
+      <td>summer</td>
+    </tr>
+    <tr>
+      <th>33375</th>
+      <td>8</td>
+      <td>summer</td>
+    </tr>
+    <tr>
+      <th>33376</th>
+      <td>8</td>
+      <td>summer</td>
+    </tr>
+    <tr>
+      <th>33377</th>
+      <td>8</td>
+      <td>summer</td>
+    </tr>
+    <tr>
+      <th>33378</th>
+      <td>8</td>
+      <td>summer</td>
+    </tr>
+  </tbody>
+</table>
+<p>33379 rows × 2 columns</p>
+</div>
+
+
+
+
 ```python
 bike_df['day_night'] = bike_df['hour'].apply(lambda x: 'night' if x>=21 else 'late evening' if x>=19 else 'early evening' if x>=17 else 'late afternoon' if x>= 16 else 'early afternoon' if x>=13 else 'late morning' if x>=11 else 'early morning' if x>=5 else 'night')
 ```
@@ -1406,6 +1464,178 @@ bike_df['day_night'] = bike_df['hour'].apply(lambda x: 'night' if x>=21 else 'la
 ```python
 bike_df.head()
 ```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+    
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>datetime</th>
+      <th>count</th>
+      <th>holiday</th>
+      <th>workingday</th>
+      <th>temp</th>
+      <th>feels_like</th>
+      <th>temp_min</th>
+      <th>temp_max</th>
+      <th>pressure</th>
+      <th>humidity</th>
+      <th>...</th>
+      <th>snow_1h</th>
+      <th>clouds_all</th>
+      <th>weather_main</th>
+      <th>year</th>
+      <th>month</th>
+      <th>hour</th>
+      <th>date</th>
+      <th>covid</th>
+      <th>season</th>
+      <th>day_night</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2018-01-01 00:00:00</td>
+      <td>34</td>
+      <td>1</td>
+      <td>0</td>
+      <td>-7.17</td>
+      <td>-12.73</td>
+      <td>-8.56</td>
+      <td>-7.09</td>
+      <td>1030</td>
+      <td>53</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>20</td>
+      <td>Clouds</td>
+      <td>2018</td>
+      <td>1</td>
+      <td>0</td>
+      <td>2018-01-01</td>
+      <td>precovid</td>
+      <td>winter</td>
+      <td>night</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2018-01-01 01:00:00</td>
+      <td>49</td>
+      <td>1</td>
+      <td>0</td>
+      <td>-7.35</td>
+      <td>-13.81</td>
+      <td>-9.03</td>
+      <td>-7.15</td>
+      <td>1030</td>
+      <td>49</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>1</td>
+      <td>Clear</td>
+      <td>2018</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2018-01-01</td>
+      <td>precovid</td>
+      <td>winter</td>
+      <td>night</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2018-01-01 02:00:00</td>
+      <td>37</td>
+      <td>1</td>
+      <td>0</td>
+      <td>-7.88</td>
+      <td>-14.05</td>
+      <td>-9.03</td>
+      <td>-7.69</td>
+      <td>1031</td>
+      <td>52</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>1</td>
+      <td>Clear</td>
+      <td>2018</td>
+      <td>1</td>
+      <td>2</td>
+      <td>2018-01-01</td>
+      <td>precovid</td>
+      <td>winter</td>
+      <td>night</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2018-01-01 03:00:00</td>
+      <td>9</td>
+      <td>1</td>
+      <td>0</td>
+      <td>-8.10</td>
+      <td>-14.32</td>
+      <td>-9.36</td>
+      <td>-7.89</td>
+      <td>1031</td>
+      <td>49</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>1</td>
+      <td>Clear</td>
+      <td>2018</td>
+      <td>1</td>
+      <td>3</td>
+      <td>2018-01-01</td>
+      <td>precovid</td>
+      <td>winter</td>
+      <td>night</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2018-01-01 04:00:00</td>
+      <td>12</td>
+      <td>1</td>
+      <td>0</td>
+      <td>-8.19</td>
+      <td>-14.43</td>
+      <td>-9.46</td>
+      <td>-8.09</td>
+      <td>1031</td>
+      <td>49</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>1</td>
+      <td>Clear</td>
+      <td>2018</td>
+      <td>1</td>
+      <td>4</td>
+      <td>2018-01-01</td>
+      <td>precovid</td>
+      <td>winter</td>
+      <td>night</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 23 columns</p>
+</div>
+
+
 
 
 ```python
@@ -1418,10 +1648,182 @@ bike_df.head()
 ```
 
 
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+    
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>count</th>
+      <th>holiday</th>
+      <th>workingday</th>
+      <th>temp</th>
+      <th>feels_like</th>
+      <th>temp_min</th>
+      <th>temp_max</th>
+      <th>pressure</th>
+      <th>humidity</th>
+      <th>wind_speed</th>
+      <th>wind_deg</th>
+      <th>rain_1h</th>
+      <th>snow_1h</th>
+      <th>clouds_all</th>
+      <th>weather_main</th>
+      <th>year</th>
+      <th>hour</th>
+      <th>covid</th>
+      <th>season</th>
+      <th>day_night</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>34</td>
+      <td>1</td>
+      <td>0</td>
+      <td>-7.17</td>
+      <td>-12.73</td>
+      <td>-8.56</td>
+      <td>-7.09</td>
+      <td>1030</td>
+      <td>53</td>
+      <td>3.6</td>
+      <td>310</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>20</td>
+      <td>Clouds</td>
+      <td>2018</td>
+      <td>0</td>
+      <td>precovid</td>
+      <td>winter</td>
+      <td>night</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>49</td>
+      <td>1</td>
+      <td>0</td>
+      <td>-7.35</td>
+      <td>-13.81</td>
+      <td>-9.03</td>
+      <td>-7.15</td>
+      <td>1030</td>
+      <td>49</td>
+      <td>4.6</td>
+      <td>310</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1</td>
+      <td>Clear</td>
+      <td>2018</td>
+      <td>1</td>
+      <td>precovid</td>
+      <td>winter</td>
+      <td>night</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>37</td>
+      <td>1</td>
+      <td>0</td>
+      <td>-7.88</td>
+      <td>-14.05</td>
+      <td>-9.03</td>
+      <td>-7.69</td>
+      <td>1031</td>
+      <td>52</td>
+      <td>4.1</td>
+      <td>310</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1</td>
+      <td>Clear</td>
+      <td>2018</td>
+      <td>2</td>
+      <td>precovid</td>
+      <td>winter</td>
+      <td>night</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>9</td>
+      <td>1</td>
+      <td>0</td>
+      <td>-8.10</td>
+      <td>-14.32</td>
+      <td>-9.36</td>
+      <td>-7.89</td>
+      <td>1031</td>
+      <td>49</td>
+      <td>4.1</td>
+      <td>310</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1</td>
+      <td>Clear</td>
+      <td>2018</td>
+      <td>3</td>
+      <td>precovid</td>
+      <td>winter</td>
+      <td>night</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>12</td>
+      <td>1</td>
+      <td>0</td>
+      <td>-8.19</td>
+      <td>-14.43</td>
+      <td>-9.46</td>
+      <td>-8.09</td>
+      <td>1031</td>
+      <td>49</td>
+      <td>4.1</td>
+      <td>330</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1</td>
+      <td>Clear</td>
+      <td>2018</td>
+      <td>4</td>
+      <td>precovid</td>
+      <td>winter</td>
+      <td>night</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
 ```python
 for i in ['weather_main', 'hour', 'covid', 'season', 'day_night']:
     print(i, bike_df[i].nunique())
 ```
+
+    weather_main 11
+    hour 24
+    covid 3
+    season 4
+    day_night 7
+
 
 
 ```python
@@ -1429,9 +1831,333 @@ bike_df['weather_main'].unique() # 묶을 수 있으면 묶어주는것이 성�
 ```
 
 
+
+
+    array(['Clouds', 'Clear', 'Snow', 'Mist', 'Rain', 'Fog', 'Drizzle',
+           'Haze', 'Thunderstorm', 'Smoke', 'Squall'], dtype=object)
+
+
+
+
 ```python
 pd.get_dummies(bike_df, columns=['weather_main', 'covid', 'season', 'day_night'])
 ```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+    
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>count</th>
+      <th>holiday</th>
+      <th>workingday</th>
+      <th>temp</th>
+      <th>feels_like</th>
+      <th>temp_min</th>
+      <th>temp_max</th>
+      <th>pressure</th>
+      <th>humidity</th>
+      <th>wind_speed</th>
+      <th>...</th>
+      <th>season_spring</th>
+      <th>season_summer</th>
+      <th>season_winter</th>
+      <th>day_night_early afternoon</th>
+      <th>day_night_early evening</th>
+      <th>day_night_early morning</th>
+      <th>day_night_late afternoon</th>
+      <th>day_night_late evening</th>
+      <th>day_night_late morning</th>
+      <th>day_night_night</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>34</td>
+      <td>1</td>
+      <td>0</td>
+      <td>-7.17</td>
+      <td>-12.73</td>
+      <td>-8.56</td>
+      <td>-7.09</td>
+      <td>1030</td>
+      <td>53</td>
+      <td>3.60</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>49</td>
+      <td>1</td>
+      <td>0</td>
+      <td>-7.35</td>
+      <td>-13.81</td>
+      <td>-9.03</td>
+      <td>-7.15</td>
+      <td>1030</td>
+      <td>49</td>
+      <td>4.60</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>37</td>
+      <td>1</td>
+      <td>0</td>
+      <td>-7.88</td>
+      <td>-14.05</td>
+      <td>-9.03</td>
+      <td>-7.69</td>
+      <td>1031</td>
+      <td>52</td>
+      <td>4.10</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>9</td>
+      <td>1</td>
+      <td>0</td>
+      <td>-8.10</td>
+      <td>-14.32</td>
+      <td>-9.36</td>
+      <td>-7.89</td>
+      <td>1031</td>
+      <td>49</td>
+      <td>4.10</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>12</td>
+      <td>1</td>
+      <td>0</td>
+      <td>-8.19</td>
+      <td>-14.43</td>
+      <td>-9.46</td>
+      <td>-8.09</td>
+      <td>1031</td>
+      <td>49</td>
+      <td>4.10</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>33374</th>
+      <td>659</td>
+      <td>0</td>
+      <td>1</td>
+      <td>28.78</td>
+      <td>32.79</td>
+      <td>26.78</td>
+      <td>29.94</td>
+      <td>1007</td>
+      <td>73</td>
+      <td>0.45</td>
+      <td>...</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>33375</th>
+      <td>404</td>
+      <td>0</td>
+      <td>1</td>
+      <td>28.52</td>
+      <td>32.37</td>
+      <td>26.34</td>
+      <td>29.84</td>
+      <td>1007</td>
+      <td>74</td>
+      <td>0.45</td>
+      <td>...</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>33376</th>
+      <td>259</td>
+      <td>0</td>
+      <td>1</td>
+      <td>28.22</td>
+      <td>31.85</td>
+      <td>26.78</td>
+      <td>29.25</td>
+      <td>1007</td>
+      <td>75</td>
+      <td>0.45</td>
+      <td>...</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>33377</th>
+      <td>192</td>
+      <td>0</td>
+      <td>1</td>
+      <td>27.51</td>
+      <td>30.42</td>
+      <td>26.43</td>
+      <td>28.85</td>
+      <td>1004</td>
+      <td>76</td>
+      <td>2.06</td>
+      <td>...</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>33378</th>
+      <td>139</td>
+      <td>0</td>
+      <td>1</td>
+      <td>24.48</td>
+      <td>24.73</td>
+      <td>23.06</td>
+      <td>27.85</td>
+      <td>1009</td>
+      <td>67</td>
+      <td>1.54</td>
+      <td>...</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+<p>33379 rows × 41 columns</p>
+</div>
+
+
 
 
 ```python
@@ -1443,6 +2169,8 @@ bike_df.drop(['hour'], axis=1, inplace=True)
 bike_df = pd.get_dummies(bike_df, columns=['weather_main', 'covid', 'season', 'day_night'])
 ```
 
+# Train - Test 분리
+
 
 ```python
 from sklearn.model_selection import train_test_split
@@ -1452,6 +2180,8 @@ from sklearn.model_selection import train_test_split
 ```python
 X_train, X_test, y_train, y_test = train_test_split(bike_df.drop('count', axis=1), bike_df['count'], test_size=0.3, random_state=10)
 ```
+
+# DecisionTree
 
 
 ```python
@@ -1469,19 +2199,51 @@ dt.fit(X_train, y_train)
 ```
 
 
+
+
+    DecisionTreeRegressor(ccp_alpha=0.0, criterion='mse', max_depth=None,
+                          max_features=None, max_leaf_nodes=None,
+                          min_impurity_decrease=0.0, min_impurity_split=None,
+                          min_samples_leaf=1, min_samples_split=2,
+                          min_weight_fraction_leaf=0.0, presort='deprecated',
+                          random_state=10, splitter='best')
+
+
+
+
 ```python
 dt.predict(X_test)
 ```
+
+
+
+
+    array([255., 471., 487., ...,  55., 705., 868.])
+
+
 
 
 ```python
 pred_1 = dt.predict(X_test)
 ```
 
+# 예측 결과
+
 
 ```python
 sns.scatterplot(y_test, pred_1)
 ```
+
+
+
+
+    <matplotlib.axes._subplots.AxesSubplot at 0x194fe082c08>
+
+
+
+
+![output_66_1](/images/2023-12-03-DecisionTree/output_66_1.png)
+
 
 
 ```python
@@ -1492,6 +2254,13 @@ from sklearn.metrics import mean_squared_error
 ```python
 mean_squared_error(y_test, pred_1, squared=False)
 ```
+
+
+
+
+    224.10943208047624
+
+
 
 
 ```python
@@ -1509,6 +2278,13 @@ lr.fit(X_train, y_train)
 ```
 
 
+
+
+    LinearRegression(copy_X=True, fit_intercept=True, n_jobs=None, normalize=False)
+
+
+
+
 ```python
 pred_2 = lr.predict(X_test)
 ```
@@ -1519,39 +2295,29 @@ sns.scatterplot(y_test, pred_2)
 ```
 
 
+
+
+    <matplotlib.axes._subplots.AxesSubplot at 0x1948071ed48>
+
+
+
+
+![output_73_1](/images/2023-12-03-DecisionTree/output_73_1.png)
+
+
+
 ```python
 mean_squared_error(y_test, pred_2, squared=False)
 ```
 
 
-```python
-lr.fit(X_train, np.log(y_train))
-```
 
 
-```python
-np.log(0)
-```
+    226.75284145044625
 
 
-```python
-lr.fit(X_train, np.log(y_train+1))
-```
 
-
-```python
-pred_3 = lr.predict(X_test)
-```
-
-
-```python
-pred_3 = np.exp(pred_3) - 1
-```
-
-
-```python
-mean_squared_error(y_test, pred_3,squared=False)
-```
+# DecisionTree 시각화
 
 
 ```python
@@ -1579,6 +2345,18 @@ dt.fit(X_train,y_train)
 ```
 
 
+
+
+    DecisionTreeRegressor(ccp_alpha=0.0, criterion='mse', max_depth=50,
+                          max_features=None, max_leaf_nodes=None,
+                          min_impurity_decrease=0.0, min_impurity_split=None,
+                          min_samples_leaf=30, min_samples_split=2,
+                          min_weight_fraction_leaf=0.0, presort='deprecated',
+                          random_state=10, splitter='best')
+
+
+
+
 ```python
 pred_4 = dt.predict(X_test)
 ```
@@ -1589,9 +2367,23 @@ mean_squared_error(y_test,pred_4,squared=False)
 ```
 
 
+
+
+    187.73089614540783
+
+
+
+
 ```python
 graph_tree(dt)
 ```
+
+
+
+
+![output_82_0](/images/2023-12-03-DecisionTree/output_82_0.png)
+
+
 
 
 ```python
@@ -1606,13 +2398,342 @@ plt.show()
 ```
 
 
+
+
+![output_84_0](/images/2023-12-03-DecisionTree/output_84_0.png)
+
 ```python
 X_train
 ```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+    
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>holiday</th>
+      <th>workingday</th>
+      <th>temp</th>
+      <th>feels_like</th>
+      <th>temp_min</th>
+      <th>temp_max</th>
+      <th>pressure</th>
+      <th>humidity</th>
+      <th>wind_speed</th>
+      <th>wind_deg</th>
+      <th>...</th>
+      <th>season_spring</th>
+      <th>season_summer</th>
+      <th>season_winter</th>
+      <th>day_night_early afternoon</th>
+      <th>day_night_early evening</th>
+      <th>day_night_early morning</th>
+      <th>day_night_late afternoon</th>
+      <th>day_night_late evening</th>
+      <th>day_night_late morning</th>
+      <th>day_night_night</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>7300</th>
+      <td>0</td>
+      <td>1</td>
+      <td>22.77</td>
+      <td>23.40</td>
+      <td>20.97</td>
+      <td>22.85</td>
+      <td>1000</td>
+      <td>88</td>
+      <td>9.26</td>
+      <td>360</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>17642</th>
+      <td>0</td>
+      <td>1</td>
+      <td>10.87</td>
+      <td>9.37</td>
+      <td>10.00</td>
+      <td>11.62</td>
+      <td>1019</td>
+      <td>52</td>
+      <td>0.89</td>
+      <td>160</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>17027</th>
+      <td>0</td>
+      <td>1</td>
+      <td>20.94</td>
+      <td>20.63</td>
+      <td>18.71</td>
+      <td>22.21</td>
+      <td>1012</td>
+      <td>59</td>
+      <td>1.50</td>
+      <td>280</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>16529</th>
+      <td>0</td>
+      <td>1</td>
+      <td>16.05</td>
+      <td>15.85</td>
+      <td>14.47</td>
+      <td>16.85</td>
+      <td>1021</td>
+      <td>82</td>
+      <td>1.34</td>
+      <td>23</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>26007</th>
+      <td>0</td>
+      <td>1</td>
+      <td>12.62</td>
+      <td>11.92</td>
+      <td>11.60</td>
+      <td>13.28</td>
+      <td>1015</td>
+      <td>76</td>
+      <td>0.45</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>10201</th>
+      <td>0</td>
+      <td>1</td>
+      <td>-0.37</td>
+      <td>-0.37</td>
+      <td>-3.26</td>
+      <td>0.36</td>
+      <td>1016</td>
+      <td>47</td>
+      <td>1.00</td>
+      <td>130</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>9372</th>
+      <td>0</td>
+      <td>0</td>
+      <td>8.82</td>
+      <td>8.26</td>
+      <td>6.58</td>
+      <td>11.58</td>
+      <td>1014</td>
+      <td>91</td>
+      <td>1.54</td>
+      <td>220</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>28017</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0.47</td>
+      <td>0.47</td>
+      <td>-1.06</td>
+      <td>1.62</td>
+      <td>1019</td>
+      <td>89</td>
+      <td>0.45</td>
+      <td>84</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>29199</th>
+      <td>0</td>
+      <td>1</td>
+      <td>4.76</td>
+      <td>4.76</td>
+      <td>3.97</td>
+      <td>5.51</td>
+      <td>1025</td>
+      <td>42</td>
+      <td>0.45</td>
+      <td>172</td>
+      <td>...</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>17673</th>
+      <td>0</td>
+      <td>0</td>
+      <td>5.11</td>
+      <td>2.23</td>
+      <td>3.34</td>
+      <td>5.92</td>
+      <td>1017</td>
+      <td>62</td>
+      <td>3.60</td>
+      <td>330</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+<p>23365 rows × 39 columns</p>
+</div>
+
+
 
 
 ```python
 plt.figure(figsize=(25,15))
 plot_tree(dt,max_depth =3, fontsize =13, feature_names=X_train.columns)
 plt.show()
+```
+
+
+![output_86_0](/images/2023-12-03-DecisionTree/output_86_0.png)
+
+
+
+```python
+
 ```
