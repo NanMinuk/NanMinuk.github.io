@@ -48,7 +48,7 @@ plt.show()
 ```
 
 
-​    ![output_6_0](../images/2023-11-29-WordCloud/output_6_0.png)
+​    ![output_6_0](/images/2023-11-29-WordCloud/output_6_0.png)
 
 
 
@@ -67,7 +67,7 @@ plt.show()
 ```
 
 
-![output_7_0](../images/2023-11-29-WordCloud/output_7_0.png)
+![output_7_0](/images/2023-11-29-WordCloud/output_7_0.png)
     
 
 ## 불용어 등록
@@ -269,7 +269,7 @@ plt.show()
 
 
 
-![output_31_0](../images/2023-11-29-WordCloud/output_31_0.png)
+![output_31_0](/images/2023-11-29-WordCloud/output_31_0.png)
 
 
 
@@ -395,5 +395,5 @@ plt.show()
 ```
 
 
-![output_40_0](../images/2023-11-29-WordCloud/output_40_0.png)
+![output_40_0](/images/2023-11-29-WordCloud/output_40_0.png)
     
