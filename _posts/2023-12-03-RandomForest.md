@@ -4,6 +4,12 @@ tags: Machine_Learnig
 typora-root-url: ../
 ---
 
+# 데이터로드
+
+사용데이터셋: [DL Course Data (kaggle.com)](https://www.kaggle.com/datasets/ryanholbrook/dl-course-data?select=hotel.csv)
+
+
+
 ```python
 import numpy as np
 import pandas as pd
@@ -34,7 +40,7 @@ hotel_df.head()
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -216,7 +222,7 @@ hotel_df.head()
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -439,6 +445,8 @@ hotel_df.head()
 </table>
 </div>
 
+# 데이터전처리
+
 
 
 
@@ -483,7 +491,7 @@ hotel_df.info()
      24  total_of_special_requests       119390 non-null  int64  
     dtypes: float64(2), int64(14), object(9)
     memory usage: 22.8+ MB
-    
+
 
 
 ```python
@@ -502,7 +510,7 @@ hotel_df.describe()
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -688,6 +696,10 @@ hotel_df.describe()
 
 
 
+# 데이터 시각화
+
+
+
 
 ```python
 sns.displot(hotel_df['lead_time'])
@@ -700,10 +712,7 @@ sns.displot(hotel_df['lead_time'])
 
 
 
-
-![png](output_8_1.png)
-
-
+![output_8_1](/images/2023-12-03-RandomForest/output_8_1.png)
 
 ```python
 sns.boxplot(y=hotel_df['lead_time'])
@@ -717,7 +726,7 @@ sns.boxplot(y=hotel_df['lead_time'])
 
 
 
-![png](output_9_1.png)
+![output_9_1](/images/2023-12-03-RandomForest/output_9_1.png)
 
 
 
@@ -737,7 +746,7 @@ hotel_df[hotel_df['adr'] < 0] # 취소가 되지 않았는데 요금이 마이�
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -826,7 +835,7 @@ sns.barplot(x=hotel_df['distribution_channel'], y=hotel_df['is_canceled'])
 
 
 
-![png](output_12_1.png)
+![output_12_1](/images/2023-12-03-RandomForest/output_12_1.png)
 
 
 
@@ -859,7 +868,7 @@ sns.barplot(x=hotel_df['hotel'], y=hotel_df['is_canceled'])
 
 
 
-![png](output_14_1.png)
+![output_14_1](/images/2023-12-03-RandomForest/output_14_1.png)
 
 
 
@@ -872,10 +881,7 @@ sns.barplot(x=hotel_df['arrival_date_year'], y=hotel_df['is_canceled'])
 
     <AxesSubplot:xlabel='arrival_date_year', ylabel='is_canceled'>
 
-
-
-
-![png](output_15_1.png)
+![output_15_1](/images/2023-12-03-RandomForest/output_15_1.png)
 
 
 
@@ -892,7 +898,7 @@ sns.barplot(x=hotel_df['arrival_date_month'], y=hotel_df['is_canceled'])
 
 
 
-![png](output_16_1.png)
+![output_16_1](/images/2023-12-03-RandomForest/output_16_1.png)
 
 
 
@@ -907,7 +913,7 @@ print(calendar.month_name[2])
 
     January
     February
-    
+
 
 
 ```python
@@ -954,7 +960,7 @@ sns.barplot(x=hotel_df['arrival_date_month'], y=hotel_df['is_canceled'], order=m
 
 
 
-![png](output_20_1.png)
+![output_20_1](/images/2023-12-03-RandomForest/output_20_1.png)
 
 
 
@@ -970,7 +976,7 @@ sns.barplot(x=hotel_df['is_repeated_guest'], y=hotel_df['is_canceled'])
 
 
 
-![png](output_21_1.png)
+![output_21_1](/images/2023-12-03-RandomForest/output_21_1.png)
 
 
 
@@ -986,7 +992,7 @@ sns.barplot(x=hotel_df['deposit_type'], y=hotel_df['is_canceled'])
 
 
 
-![png](output_22_1.png)
+![output_22_1](/images/2023-12-03-RandomForest/output_22_1.png)
 
 
 
@@ -1018,7 +1024,11 @@ sns.heatmap(hotel_df.corr(), cmap='coolwarm', vmax=1, vmin=-1, annot=True)
 
 
 
-![png](output_24_1.png)
+![output_24_1](/images/2023-12-03-RandomForest/output_24_1.png)
+
+
+
+# Null 처리
 
 
 
@@ -1080,7 +1090,7 @@ hotel_df.head()
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -1280,7 +1290,7 @@ hotel_df[hotel_df['adults'] == 0]
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -1654,7 +1664,7 @@ hotel_df[hotel_df['people'] == 0]
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -2040,7 +2050,7 @@ hotel_df.head()
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -2251,7 +2261,7 @@ hotel_df[hotel_df['total_nights'] == 0]
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -2625,6 +2635,8 @@ hotel_df[hotel_df['total_nights'] == 0]
 <p>640 rows × 27 columns</p>
 </div>
 
+# column 새로 생성
+
 
 
 
@@ -2709,7 +2721,7 @@ hotel_df.head()
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -2932,7 +2944,7 @@ hotel_df.head()
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -3161,7 +3173,7 @@ hotel_df.head()
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -3391,7 +3403,7 @@ hotel_df[hotel_df['cancel_rate'].isna()]
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -3820,7 +3832,7 @@ hotel_df[~hotel_df['cancel_rate'].isna()]
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -4249,7 +4261,7 @@ hotel_df[hotel_df['cancel_rate']>0]
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -4735,7 +4747,7 @@ for i in obj_list:
     deposit_type 3
     customer_type 4
     season 4
-    
+
 
 
 ```python
@@ -4787,7 +4799,7 @@ hotel_df.head()
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -5235,8 +5247,9 @@ print(classification_report(y_test,pred1))
         accuracy                           0.86     47491
        macro avg       0.85      0.83      0.84     47491
     weighted avg       0.85      0.86      0.85     47491
-    
-    
+
+
+​    
 
 ### precision( 정밀도)
 * 1이라고 예측한 것 중 얼마 만큼을 제대로 맞췄는가?
@@ -5541,7 +5554,7 @@ sns.barplot(x='importances',y='features',data=top10)
 
 
 
-![png](output_105_1.png)
+![output_105_1](/images/2023-12-03-RandomForest/output_105_1.png)
 
 
 
