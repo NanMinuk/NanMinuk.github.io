@@ -1,7 +1,12 @@
 ---
 title: Industry Concentration Statistic Project by Commercial District
 tags: Python_basic
+typora-root-url: ../
 ---
+
+# 상권별 업종 밀집 분석 프로젝트
+
+
 
 사용 데이터셋:
 
@@ -656,6 +661,10 @@ shop_2018_06.columns
 
 
 
+## 데이터프레임 정보
+
+
+
 
 ```python
 shop_2018_06.info()
@@ -940,6 +949,8 @@ shop_2018_06
 
 </div>
 
+## null값 제거
+
 
 
 
@@ -979,8 +990,9 @@ shop_2018_06.plot.scatter(x='경도',y='위도',grid=True,figsize=(12,16))
 
 
 
+![output_9_1](/images/2023-11-29-Industry concentration statistics project/output_9_1.png)
 
-  ![output_9_1](D:\Desktop\blog\Nanminuk.github.io\assets\images\2023-11-29-Industry concentration statistics project\output_9_1.png)
+## 서울 지역만 보기
 
 ```python
 #서울만 추려내기
@@ -1448,6 +1460,8 @@ shop_except_seoul
 shop_seoul.plot.scatter(x='경도',y='위도',grid=True,figsize=(16,12))
 ```
 
+##  서울지역
+
 
 
 
@@ -1456,8 +1470,10 @@ shop_seoul.plot.scatter(x='경도',y='위도',grid=True,figsize=(16,12))
 
 
 
-![output_12_1](D:\Desktop\blog\Nanminuk.github.io\assets\images\2023-11-29-Industry concentration statistics project\output_12_1.png)
+![output_12_1](/images/2023-11-29-Industry concentration statistics project/output_12_1.png)
     
+
+##  서울 외 지역
 
 
 
@@ -1473,8 +1489,12 @@ shop_except_seoul.plot.scatter(x='경도',y='위도',grid=True,figsize=(16,12))
 
 
 
-![output_13_1](D:\Desktop\blog\Nanminuk.github.io\assets\images\2023-11-29-Industry concentration statistics project\output_13_1.png)
+![output_13_1](/images/2023-11-29-Industry concentration statistics project/output_13_1.png)
     
+
+
+
+## 지역 따라 색깔 다르게
 
 
 
@@ -1491,7 +1511,7 @@ sns.scatterplot(data=shop_seoul,x='경도',y='위도',hue='시군구명')
 
 
 
-  ![output_14_1](D:\Desktop\blog\Nanminuk.github.io\assets\images\2023-11-29-Industry concentration statistics project\output_14_1.png)
+  ![output_14_1](/images/2023-11-29-Industry concentration statistics project/output_14_1.png)
     
 
 
@@ -1509,6 +1529,10 @@ shop_seoul_edu.shape
 
 
 
+## 상권업종대분류명에 따른 분류
+
+
+
 
 ```python
 plt.figure(figsize=(16,12))
@@ -1523,7 +1547,7 @@ sns.scatterplot(data=shop_seoul_edu,x='경도',y='위도',hue='상권업종대�
 
 
 
-​    ![output_16_1](D:\Desktop\blog\Nanminuk.github.io\assets\images\2023-11-29-Industry concentration statistics project\output_16_1.png)
+​    ![output_16_1](/images/2023-11-29-Industry concentration statistics project/output_16_1.png)
 
 ​    
 
@@ -1542,7 +1566,7 @@ sns.scatterplot(data=shop_seoul_edu,x='경도',y='위도',hue='상권업종중�
 
 
 
-![output_17_1](D:\Desktop\blog\Nanminuk.github.io\assets\images\2023-11-29-Industry concentration statistics project\output_17_1.png)
+![output_17_1](/images/2023-11-29-Industry concentration statistics project/output_17_1.png)
     
 
 
@@ -1706,7 +1730,7 @@ sns.scatterplot(data=shop_seoul_edu_computer,x='경도',y='위도',hue='상호�
 
 
 
-![output_20_1](D:\Desktop\blog\Nanminuk.github.io\assets\images\2023-11-29-Industry concentration statistics project\output_20_1.png)
+![output_20_1](/images/2023-11-29-Industry concentration statistics project/output_20_1.png)
     
 
 
@@ -48690,5 +48714,4 @@ coffee_map
 
 &lt;/script&gt;
 &lt;/html&gt;" style="position:absolute;width:100%;height:100%;left:0;top:0;border:none !important;" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe></div></div>
-
 
