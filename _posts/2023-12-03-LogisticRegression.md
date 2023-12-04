@@ -4,7 +4,13 @@ tags: Machine_Learnig
 typora-root-url: ../
 ---
 
-분류 문제를 푸는 모델
+
+
+# 데이터 전처리
+
+사용데이터셋: [Employees Evaluation for Promotion (kaggle.com)](https://www.kaggle.com/datasets/muhammadimran112233/employees-evaluation-for-promotion)
+
+
 
 
 ```python
@@ -36,7 +42,7 @@ hr_df.head()
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -176,7 +182,7 @@ hr_df.info()
      11  is_promoted           54808 non-null  int64  
     dtypes: float64(1), int64(6), object(5)
     memory usage: 5.0+ MB
-    
+
 
 
 ```python
@@ -195,7 +201,7 @@ hr_df.describe()
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -317,7 +323,7 @@ hr_df.describe(include='all')
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -527,6 +533,12 @@ hr_df['education'].value_counts()
 
 
 
+# 데이터 시각화
+
+
+
+
+
 
 ```python
 sns.barplot(x='previous_year_rating',y='is_promoted',data=hr_df)
@@ -540,7 +552,7 @@ sns.barplot(x='previous_year_rating',y='is_promoted',data=hr_df)
 
 
 
-![png](output_9_1.png)
+![output_9_1](/images/2023-12-03-LogisticRegression/output_9_1.png)
 
 
 
@@ -556,7 +568,7 @@ sns.barplot(x=hr_df['previous_year_rating'],y=hr_df['is_promoted'],palette='Set2
 
 
 
-![png](output_10_1.png)
+![output_10_1](/images/2023-12-03-LogisticRegression/output_10_1.png)
 
 
 
@@ -572,7 +584,7 @@ sns.barplot(x=hr_df['previous_year_rating'],y=hr_df['is_promoted'],palette='Set3
 
 
 
-![png](output_11_1.png)
+![output_11_1](/images/2023-12-03-LogisticRegression/output_11_1.png)
 
 
 
@@ -588,7 +600,7 @@ sns.lineplot(x=hr_df['avg_training_score'],y=hr_df['is_promoted'],palette='Set2'
 
 
 
-![png](output_12_1.png)
+![output_12_1](/images/2023-12-03-LogisticRegression/output_12_1.png)
 
 
 
@@ -604,7 +616,7 @@ sns.barplot(x=hr_df['recruitment_channel'],y=hr_df['is_promoted'],palette='Set3'
 
 
 
-![png](output_13_1.png)
+![output_13_1](/images/2023-12-03-LogisticRegression/output_13_1.png)
 
 
 
@@ -634,10 +646,7 @@ sns.barplot(x=hr_df['gender'],y=hr_df['is_promoted'],palette='Set3')
 
 
 
-
-![png](output_15_1.png)
-
-
+![output_15_1](/images/2023-12-03-LogisticRegression/output_15_1.png)
 
 ```python
 sns.barplot(x=hr_df['department'],y=hr_df['is_promoted'],palette='Set3')
@@ -661,7 +670,7 @@ plt.xticks(rotation=45)
 
 
 
-![png](output_16_1.png)
+![output_16_1](/images/2023-12-03-LogisticRegression/output_16_1.png)
 
 
 
@@ -714,7 +723,11 @@ plt.xticks(rotation=45)
 
 
 
-![png](output_17_1.png)
+![output_17_1](/images/2023-12-03-LogisticRegression/output_17_1.png)
+
+# Null 처리
+
+
 
 
 
@@ -807,7 +820,7 @@ hr_df.info()
      11  is_promoted           50684 non-null  int64  
     dtypes: float64(1), int64(6), object(5)
     memory usage: 5.0+ MB
-    
+
 
 
 ```python
@@ -820,7 +833,11 @@ for i in ['department','region','education','gender','recruitment_channel']:
     education 4
     gender 2
     recruitment_channel 3
-    
+
+
+
+# One-hot Encoding
+
 
 
 ```python
@@ -844,7 +861,7 @@ hr_df.head(3)
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -956,6 +973,10 @@ hr_df.head(3)
 
 
 
+# Train- Test 분리
+
+
+
 
 ```python
 from sklearn.model_selection import train_test_split
@@ -989,8 +1010,10 @@ lr.fit(X_train,y_train)
     Please also refer to the documentation for alternative solver options:
         https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
       n_iter_i = _check_optimize_result(
-    
 
+
+
+# LogisticRegression
 
 
 
@@ -1010,7 +1033,7 @@ https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticR
 * 3개 이상의 클래스에 대한 판별을 진행하는 경우 아래와 같은 전략으로 판별
     1. one-vs-rest(OvR): K개의 클래스가 존재할 때, 1개의 클래스를 제외한 다른 클래스를 K개 만들어, 각가의 이진 분류에 대한 확률을 구하고, 총합을 통해 최종 클래스를 판별
     2. one-vs-one(OvO): 4개의 계정을 구분하는 클래스가 존재한다고 할 때, 0vs1, 0vs2, 0vs3... 2vs3까지의 NX(N-1) /2 개의 분류기를 만들어 가장 많이 샹성으로 선택된 클래스를 판별
- 
+
 대부분 OvsR 전략을 선호
 
 
@@ -1076,7 +1099,7 @@ sns.heatmap(confusion_matrix(y_test,pred),annot=True,cmap='Reds')
 
 
 
-![png](output_38_1.png)
+![output_38_1](/images/2023-12-03-LogisticRegression/output_38_1.png)
 
 
 ### 정밀도(precision)
@@ -1092,7 +1115,3 @@ sns.heatmap(confusion_matrix(y_test,pred),annot=True,cmap='Reds')
 * 정밀도와 재현율의 조화 평균을 나타내는 지표
 $$2*\frac{정밀도 * 재현율}{정밀도 + 재현율}=\frac{TP}{TP+\frac{FN+FP}{2}}$$
 
-
-```python
-
-```
