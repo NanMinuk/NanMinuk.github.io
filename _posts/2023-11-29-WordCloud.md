@@ -3,7 +3,9 @@ title: WordCloud
 tags: Python_basic
 ---
 
-# 1. 워드 클라우드(Word Cloud)
+# 워드 클라우드(Word Cloud)
+
+## 정의
 
 - 핵심단어를 시각화하는 기법
 - 문서의 키워드, 개념등을 직관적으로 파악할 수 있게 핵심 단어를 시각적으로 돋보이게 하는 기법
@@ -45,8 +47,11 @@ plt.show()
 ```
 
 
-![output_6_0](D:\Desktop\blog\Nanminuk.github.io\assets\images\2023-11-29-WordCloud\output_6_0.png)
-    
+​    ![output_6_0](../images/2023-11-29-WordCloud/output_6_0.png)
+
+
+
+## 표시되는 단어 갯수 설정
 
 
 
@@ -61,8 +66,10 @@ plt.show()
 ```
 
 
-![output_7_0](D:\Desktop\blog\Nanminuk.github.io\assets\images\2023-11-29-WordCloud\output_7_0.png)
+![output_7_0](../images/2023-11-29-WordCloud/output_7_0.png)
     
+
+## 불용어 등록
 
 
 
@@ -128,7 +135,7 @@ plt.show()
 ```
 
 
-![output_13_0](D:\Desktop\blog\Nanminuk.github.io\assets\images\2023-11-29-WordCloud\output_13_0.png)
+![output_13_0](../images/2023-11-29-WordCloud/output_13_0.png)
     
 
 
@@ -141,6 +148,12 @@ plt.show()
      ,'바','및','정','관','위','장']
 4. 명사의 빈도수를 계산해서 상위 500개의 단어만 선택
 5. 위 조건에 맞는 클라우드를 만들기
+
+
+
+## Okt() 사용
+
+
 
 
 ```python
@@ -254,8 +267,12 @@ plt.show()
 ```
 
 
-![output_31_0](D:\Desktop\blog\Nanminuk.github.io\assets\images\2023-11-29-WordCloud\output_31_0.png)
-    
+
+![output_31_0](../images/2023-11-29-WordCloud/output_31_0.png)
+
+
+
+## Hannanum() 사용
 
 
 
@@ -377,6 +394,5 @@ plt.show()
 ```
 
 
-​    
-![output_40_0](D:\Desktop\blog\Nanminuk.github.io\assets\images\2023-11-29-WordCloud\output_40_0.png)
-​    
+![output_40_0](../images/2023-11-29-WordCloud/output_40_0.png)
+    
