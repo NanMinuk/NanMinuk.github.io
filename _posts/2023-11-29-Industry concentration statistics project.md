@@ -1733,6 +1733,8 @@ sns.scatterplot(data=shop_seoul_edu_computer,x='경도',y='위도',hue='상호�
 ![output_20_1](/images/2023-11-29-Industry concentration statistics project/output_20_1.png)
     
 
+## 실제 지도상에 표시
+
 
 
 ```python
