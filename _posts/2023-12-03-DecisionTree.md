@@ -1,6 +1,6 @@
 ---
 title: DecisionTree
-tags: Machine_Learning
+tags: Machine_Learnig
 typora-root-url: ../
 ---
 
