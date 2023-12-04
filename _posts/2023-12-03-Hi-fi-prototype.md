@@ -11,7 +11,9 @@ tags: HCI
 
 Hi-fi 프로토타입:
 
-[https://drive.google.com/file/d/1iFvtxkk_QAzALGRVV_oUhkw-wn8USc6C/view?usp=drive_link](https://drive.google.com/file/d/1iFvtxkk_QAzALGRVV_oUhkw-wn8USc6C/view?usp=drive_link)
+[https://drive.google.com/file/d/1iFvtxkk_QAzALGRVV_oUhkw-wn8USc6C/view?usp=sharing](https://drive.google.com/file/d/1iFvtxkk_QAzALGRVV_oUhkw-wn8USc6C/view?usp=sharing)
+
+
 
 
 
