@@ -4,7 +4,7 @@ tags: Python_basic
 typora-root-url: ../
 ---
 
-# 상권별 업종 밀집 분석 프로젝트
+# 상권별 업종 밀집 통계 분석 프로젝트
 
 
 
