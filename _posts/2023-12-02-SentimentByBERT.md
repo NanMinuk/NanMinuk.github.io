@@ -1,6 +1,6 @@
 ---
 title: 리뷰감정분석 by BERT
-tags: Review Analysis Project
+tags: Review_Analysis_Project
 typora-root-url: ../
 ---
 

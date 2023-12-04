@@ -1,6 +1,6 @@
 ---
 title: 영화 리뷰 분석 프로젝트
-tags: Review Analysis Project
+tags: Review_Analysis_Project
 typora-root-url: ../
 ---
 
