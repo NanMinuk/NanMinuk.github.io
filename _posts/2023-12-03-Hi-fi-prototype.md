@@ -9,9 +9,15 @@ tags: HCI
 
 휴리스틱 평가를 종합해 실제 사용자 환경에서 동작하는 모바일 앱 프로토타입을 제작했다.
 
+Hi-fi 프로토타입:
+
+[https://drive.google.com/file/d/1iFvtxkk_QAzALGRVV_oUhkw-wn8USc6C/view?usp=drive_link](https://drive.google.com/file/d/1iFvtxkk_QAzALGRVV_oUhkw-wn8USc6C/view?usp=drive_link)
+
 
 
 현재 음성인식과 chatGPT와의 연동은 API키 이슈로 아직 구현되지 않았다.
+
+-2023-12-04 : chatGPT 연동 구현
 
 
 ### README
@@ -32,6 +38,5 @@ Hi-fi prototype
 
 현재 구현한 프로토타입의 한계점
 - 음성인식 기능이 실제로 구현 X
-- chatGPT와의 연동 구현 X
 - 앱 인터페이스(배경,글자 크기, 아이콘) 등 세부사항 수정 필요
 ```
