@@ -1,6 +1,7 @@
 ---
 title: WordCloud
 tags: Python_basic
+typora-root-url: ../
 ---
 
 # 워드 클라우드(Word Cloud)
