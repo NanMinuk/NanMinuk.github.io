@@ -984,7 +984,7 @@ plot.set_xticklabels(labels=rev_by_countries.index, rotation=45)
 retail['InvoiceDate'].sort_values(ascending=False)
 ```
 
-![output_29_1](..\assets\images\2023-11-29-Shopping_data\output_29_1.png)
+![output_29_1](../images/2023-11-29-Shopping_data/output_29_1.png)
 
 
     397883   2011-12-09 12:50:00
@@ -1053,5 +1053,5 @@ plot_bar(rev_by_month,'Month','Revenue','Revenue by Month')
 ```
 
 
- ![output_35_0](..\assets\images\2023-11-29-Shopping_data\output_35_0.png)   
+ ![output_35_0](../images/2023-11-29-Shopping_data/output_35_0.png)
 
