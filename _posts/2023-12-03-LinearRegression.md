@@ -3307,7 +3307,7 @@ sns.lineplot(x=a,y=b)
 
 
 
-![png](output_83_1.png)
+![output_83_1](/images/2023-12-03-LinearRegression/output_83_1.png)
 
 
 
@@ -3328,7 +3328,7 @@ sns.lineplot(x=a,y=b_log)
 
 
 
-![png](output_85_1.png)
+![output_85_1](/images/2023-12-03-LinearRegression/output_85_1.png)
 
 
 
