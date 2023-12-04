@@ -44,7 +44,7 @@ Department of Computer Science, University of seoul
 
   
 
-  ### Publication
+### Publication
 
   -김민욱,정형구. 노인 스마트폰 사용 능력 향상을 위한 대형언어모델 기반 앱 디 자인.2023. 한국 HCI 학회
 
